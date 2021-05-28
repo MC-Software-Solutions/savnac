@@ -66,8 +66,7 @@ def sign_up():
 			db.session.commit()
 			login_user(user, remember=True)
 			flash('Account created!', category='success')
-			return redirect(url_for('pages.home'))
-			
+			return redirect(url_for('pages.courses'))
 	return render_template('sign_up.html', user=current_user)
 
 @auth.route('/logout')
