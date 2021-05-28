@@ -98,25 +98,18 @@ body{
   
   /*position: relative;
   border-radius: 20px;
-<<<<<<< HEAD
   width: 300px;
   height: 60px;
   padding: 30px;
-=======
   width: 75%;
   height: 75%;
   padding: 40px;
   position: relative;
->>>>>>> bf987c0dc7a31c8e8eedd957545e9692fa78920f
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   background: #1fdb93;
-<<<<<<< HEAD
   text-align: center;*/
-}
-=======
-  text-align: center;
 }
 .card{
   background-color: black;
@@ -143,4 +136,3 @@ body{
   width: 100%;
   background-color: blueviolet;
 }
->>>>>>> bf987c0dc7a31c8e8eedd957545e9692fa78920f
