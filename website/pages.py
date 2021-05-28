@@ -4,4 +4,4 @@ pages = Blueprint('pages',__name__)
 
 @pages.route('/')
 def home():
-	return render_template('index.html')
+	return render_template('home.html')
