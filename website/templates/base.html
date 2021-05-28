@@ -10,9 +10,14 @@
     </head>
     <body>
       <div class='topnav'>
-        <a class='active' href='/'>Home</a>
+        {% if user.is_authenticated %}
+        <a href='/'>Home</a>
+        <a href='/courses'>Courses</a>
+        <a href='/logout'>Logout</a>
+        {% else %}
         <a href='/login'>Login</a>
         <a href='/sign_up'>Sign up</a>
+        {% endif %}
       </div>
       {% block content %}{% endblock %}
       <script
