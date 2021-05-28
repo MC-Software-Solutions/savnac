@@ -9,7 +9,11 @@ pages = Blueprint('pages',__name__)
 def home():
 	return render_template('home.html', user=current_user)
 
-@login_required
 @pages.route('/courses')
+@login_required
 def courses():
 	return render_template('courses.html', user=current_user)
+
+@pages.route('<stuff>')
+def path(stuff):
+	return render_template('not_found.html', user=current_user)
