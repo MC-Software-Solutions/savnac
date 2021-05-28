@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Courses{% endblock %}
 {% block content %}
-<h1 style="vertical-align: middle;"">Courses</h1>
-<div class="box big">
-<p>.</p>
-</div>
-
+{% for item in data %}
+	<div class='box-big'>
+		<p>{{item[1]}}</p>
+	</div>
+{% endfor %}
 {% endblock %}

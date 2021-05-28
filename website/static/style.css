@@ -12,13 +12,12 @@ body{
   font-family: 'Bebas Neue', cursive;*/
 }
 .topnav{
+  position: relative;
   background-color: #191919;
   overflow: hidden;
   text-align: center;
-  height: 40px;
 }
 .topnav a{
-  text-align: center;
   color: white;
   padding: 0px 100px;
   font-size: 30px;
@@ -89,15 +88,22 @@ body{
 .box input[type = "submit"]:hover{
   background: #2ecc71;
 }
-.box big{
+.box-big{
+  text-align: center;
+  border-radius: 10px;
+  width: 300px;
+  height: 100px;
+  background: #1fdb93;
+  margin: auto;
+  
+  /*position: relative;
   border-radius: 20px;
-  width: max-content;
-  height: max-content;
-  padding: 40px;
-  position: relative;
+  width: 300px;
+  height: 60px;
+  padding: 30px;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   background: #1fdb93;
-  text-align: center;
+  text-align: center;*/
 }
