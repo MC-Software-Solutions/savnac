@@ -14,10 +14,16 @@ body{
 .topnav{
   background-color: #191919;
   text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+}
+.topnav-item{
+  width: 250px;
 }
 .topnav a{
   color: white;
-  padding: 0px 80px;
   font-size: 30px;
   text-decoration: none;
   text-transform: uppercase;
