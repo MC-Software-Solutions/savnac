@@ -91,8 +91,8 @@ body{
 }
 .box big{
   border-radius: 20px;
-  width: max-content;
-  height: max-content;
+  width: 75%;
+  height: 75%;
   padding: 40px;
   position: relative;
   top: 50%;
@@ -100,4 +100,26 @@ body{
   transform: translate(-50%,-50%);
   background: #1fdb93;
   text-align: center;
+}
+.card{
+  color: blueviolet;
+  padding: 20rem 0 0;
+  max-width: 50ch;
+}
+.card content{
+  padding: 2.em;
+  background: black
+}
+.card-title{
+  position: relative;
+  width: max-content;
+}
+.card-title::after{
+  content: "";
+  position: absolute;
+  height: 5px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: blueviolet;
 }
