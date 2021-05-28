@@ -10,8 +10,8 @@
     </head>
     <body>
       <div class='topnav'>
-        {% if user.is_authenticated %}
         <a href='/'>Home</a>
+        {% if user.is_authenticated %}
         <a href='/courses'>Courses</a>
         <a href='/logout'>Logout</a>
         {% else %}
