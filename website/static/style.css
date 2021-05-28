@@ -12,14 +12,12 @@ body{
   font-family: 'Bebas Neue', cursive;*/
 }
 .topnav{
-  position: relative;
   background-color: #191919;
-  overflow: hidden;
   text-align: center;
 }
 .topnav a{
   color: white;
-  padding: 0px 100px;
+  padding: 0px 80px;
   font-size: 30px;
   text-decoration: none;
   text-transform: uppercase;
