@@ -1,4 +1,7 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from .models import User
+from werkzeug.security import generate_password_hash, check_password_hash
+from . import db
 
 auth = Blueprint('auth',__name__)
 
@@ -35,8 +38,11 @@ def sign_up():
 		elif len(domain) == 0:
 			flash('Organization domain cannot empty.', category='error')
 		else:
+			new_user = User(username=username, password=generate_password_hash(password, method='sha256'), api_token=api_token, domain=domain)
+			db.session.add(new_user)
+			db.session.commit()
 			flash('Account created!', category='success')
-			# database stuff
+			return redirect(url_for('pages.home'))
 			
 	return render_template('sign_up.html')
 
