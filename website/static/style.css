@@ -102,6 +102,9 @@ body{
   text-align: center;
 }
 .card{
+  background-color: black;
+  background-size: cover;
+  border-radius: 20px;
   color: blueviolet;
   padding: 20rem 0 0;
   max-width: 50ch;
