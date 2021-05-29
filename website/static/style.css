@@ -3,7 +3,7 @@
 
 body{
   font-family: 'Quantico', sans-serif;
-  background: #f8f4ff;
+  background: #fefefa;
   overflow-x: hidden;
   overflow-y: auto;
   /*background-color: #4158D0;
@@ -25,13 +25,14 @@ body{
   padding: 0px 50px;
 }
 .topnav a:hover{
-  color: #3498db;
+  color: #a1caf1;
   transition: 1s;
 }
 .home h1{
   text-align: center;
-  font-family: 'Bebas Neue';
   font-size: 150px;
+  margin-top: 50px;
+  text-transform: uppercase;
 }
 .home p{
   text-align: center;
@@ -95,7 +96,7 @@ body{
   text-align: center;
 }
 .card:hover{
-  background: #3498db;
+  background: #a1caf1;
   transition: 1s;
 }
 /*.card{

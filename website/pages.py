@@ -41,6 +41,8 @@ def assignment_details(course_id,assignment_id):
 		due_date = datetime.datetime.strptime(data['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
 	else:
 		due_date = None
+	from .other import removeTags
+	data['description'] = removeTags(data['description'])
 	return render_template('assignment_details.html', user=current_user, data=data, course_id=course_id, due_date=due_date)
 
 @pages.route('<stuff>')
