@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 
 body{
-  margin: 0;
-  padding: 0;
   font-family: 'Quantico', sans-serif;
   background: #f8f4ff;
   overflow-x: hidden;
@@ -16,19 +14,15 @@ body{
 .topnav{
   background-color: #191919;
   text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  justify-content: center;
-}
-.topnav-item{
-  width: 250px;
 }
 .topnav a{
   color: white;
   font-size: 30px;
   text-decoration: none;
   text-transform: uppercase;
+  width: 250px;
+  display: inline-block;
+  padding: 0px 50px;
 }
 .topnav a:hover{
   color: #3498db;
@@ -97,8 +91,7 @@ body{
 .card{
   width: 420px;
   height: 140px;
-  padding: 0px;
-  margin: 20px 20px;
+  margin-top: 20px;
   text-align: center;
 }
 .card:hover{
@@ -112,7 +105,7 @@ body{
   color: blueviolet;
   padding: 20rem 0 0;
   max-width: 50ch;
-}*/
+}
 .card-content{
   padding: 2.em;
   background: black
@@ -129,4 +122,4 @@ body{
   bottom: 0;
   width: 100%;
   background-color: blueviolet;
-}
+}*/

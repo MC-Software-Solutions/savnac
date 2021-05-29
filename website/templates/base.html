@@ -12,13 +12,9 @@
     <body>
       <div class='topnav'>
         {% if user.is_authenticated %}
-        <div class='topnav-item'><a href='/'>Home</a></div>
-        <div class='topnav-item'><a href='/courses'>Courses</a></div>
-        <div class='topnav-item'><a href='/logout'>Logout</a></div>
+        <a href='/'>Home</a><a href='/courses'>Courses</a><a href='/logout'>Logout</a>
         {% else %}
-        <div class='topnav-item'><a href='/'>Home</a></div>
-        <div class='topnav-item'><a href='/login'>Login</a></div>
-        <div class='topnav-item'><a href='/sign_up'>Sign up</a></div>
+        <a href='/'>Home</a><a href='/login'>Login</a><a href='/sign_up'>Sign up</a>
         {% endif %}
       </div>
       {% block content %}{% endblock %}

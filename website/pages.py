@@ -3,8 +3,8 @@ from flask_login import login_required, current_user
 from . import db
 from .models import User
 import requests
+import datetime
 
-app = Flask(__name__)
 pages = Blueprint('pages',__name__)
 
 @pages.route('/')
@@ -13,7 +13,7 @@ def home():
 
 @pages.route('/courses')
 @login_required
-def courses():
+def list_courses():
 	url = f'https://{current_user.domain}/api/v1/courses/'
 	params = {'access_token':current_user.api_token.strip(),'enrollment_state':'active','exclude_blueprint_courses':'true','per_page':'100'}
 	r = requests.get(url,params=params)
@@ -22,17 +22,32 @@ def courses():
 
 @pages.route('/courses/<course_id>')
 @login_required
-def course_id(course_id):
+def list_assignments(course_id):
 	url = f'https://{current_user.domain}/api/v1/courses/{course_id}/assignments/'
 	params = {'access_token':current_user.api_token,'order_by':'due_at','per_page':'100','include':['submission']}
 	r = requests.get(url,params=params)
+	data = [(item['id'], item['name'], datetime.datetime.strptime(item['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p') if item['due_at'] else None, item['points_possible']) for item in r.json()]
+	data.reverse()
+	return render_template('assignments.html', user=current_user, data=data, course_id=course_id)
+
+@pages.route('/courses/<course_id>/assignments/<assignment_id>')
+@login_required
+def assignment_details(course_id,assignment_id):
+	url = f'https://{current_user.domain}/api/v1/courses/{course_id}/assignments/{assignment_id}'
+	params = {'access_token':current_user.api_token,'order_by':'due_at','include':['submission']}
+	r = requests.get(url,params=params)
 	data = r.json()
-	return render_template('assignments.html', user=current_user, data=data)
+	if data['due_at']:
+		due_date = datetime.datetime.strptime(data['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
+	else:
+		due_date = None
+	return render_template('assignment_details.html', user=current_user, data=data, course_id=course_id, due_date=due_date)
 
 @pages.route('<stuff>')
 def path(stuff):
 	return render_template('not_found.html', user=current_user)
 
-@app.errorhandler(404)
-def notfound():
-	return render_template('not_found.html', user=current_user)
+def register_404_pages(app):
+	@app.errorhandler(404)
+	def notfound():
+		return render_template('not_found.html', user=current_user)
