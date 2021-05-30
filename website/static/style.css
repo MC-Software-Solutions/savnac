@@ -42,6 +42,9 @@ body{
   border-radius: 20px;
   width: 400px;
   padding: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   position: absolute;
   top: 50%;
   left: 50%;
