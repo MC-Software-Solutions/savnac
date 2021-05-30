@@ -9,7 +9,7 @@ db = SQLAlchemy()
 def create_app():
 	app = Flask(__name__)
 	app.config['SECRET_KEY'] = environ['SECRET_KEY']
-	app.config['SQLALCHEMY_DATABASE_URI'] = environ['DATABASE_URL_1']
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2' + environ['DATABASE_URL'][8:]
 	db.init_app(app)
 
 	from .pages import pages
