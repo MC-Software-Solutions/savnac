@@ -91,7 +91,7 @@ body{
 }
 .card{
   width: 420px;
-  height: 140px;
+  height: 160px;
   margin-top: 20px;
   text-align: center;
 }
@@ -99,28 +99,3 @@ body{
   background: #a1caf1;
   transition: 1s;
 }
-/*.card{
-  background-color: black;
-  background-size: cover;
-  border-radius: 20px;
-  color: blueviolet;
-  padding: 20rem 0 0;
-  max-width: 50ch;
-}
-.card-content{
-  padding: 2.em;
-  background: black
-}
-.card-title{
-  position: relative;
-  width: max-content;
-}
-.card-title::after{
-  content: "";
-  position: absolute;
-  height: 5px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: blueviolet;
-}*/
