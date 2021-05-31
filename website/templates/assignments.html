@@ -12,12 +12,16 @@
 						<h5>{{item[1]}}</h5>
 						<h6><b>Due:</b> {{item[2]}}</h6>
 						<h6><b>Points:</b> {{item[3]}}</h6>
+						<h6><b>Status:</b> {{item[4]}}</h6>
 					</div>
 				</div>
 				</a>
 			</div>
 			{% endfor %}
 		</div>
+		{% if not data %}
+		<h1 style='text-align: center; margin-top: 20px;'>No assignments here!</h1>
+		{% endif %}
 	</div>
 </section>
 {% endblock %}

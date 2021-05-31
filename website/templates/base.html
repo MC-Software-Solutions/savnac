@@ -10,13 +10,18 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-      <div class='topnav'>
+      <nav class='navbar navbar-dark bg-dark navbar-expand-lg'>
+        <a class='navbar-brand' href='/'>SAVNAC</a>
+        <div class='navbar-nav'>
         {% if user.is_authenticated %}
-        <a href='/'>Home</a><a href='/courses'>Courses</a><a href='/logout'>Logout</a>
+          <a class='nav-item nav-link' href='/courses'>Courses</a>
+          <a class='nav-item nav-link' href='/logout'>Logout</a>
         {% else %}
-        <a href='/'>Home</a><a href='/login'>Login</a><a href='/sign_up'>Sign up</a>
+          <a class='nav-item nav-link' href='/login'>Login</a>
+          <a class='nav-item nav-link' href='/sign_up'>Sign up</a>
         {% endif %}
-      </div>
+        </div>
+      </nav>
       {% block content %}{% endblock %}
       <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
