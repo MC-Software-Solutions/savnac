@@ -11,6 +11,9 @@ body p{
   color: #171a1d;
   margin-top: 20px;
 }
+.container{
+  margin-top: 20px;
+}
 .navbar{
   width: 100%;
 }

@@ -92,3 +92,7 @@ def todo():
 		if item['due_at']:
 			item['due_at'] = datetime.datetime.strptime(item['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
 	return render_template('todo.html', user=current_user, data=data)
+
+@pages.route('/feedback')
+def feedback():
+	return render_template('feedback.html', user=current_user)
