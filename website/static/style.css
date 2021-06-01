@@ -7,7 +7,8 @@ body{
   overflow-x: hidden;
   overflow-y: auto;
 }
-body p{
+body p, ol{
+  font-size: 20px;
   color: #171a1d;
   margin-top: 20px;
 }
