@@ -33,3 +33,4 @@ Coming soon...
 |:heavy_check_mark:|Click courses to view assignments and announcements|
 ||Change user settings (password, api token, organization domain)|
 |:heavy_check_mark:|Make website mobile friendly|
+|:heavy_check_mark:|Add feedback page|
