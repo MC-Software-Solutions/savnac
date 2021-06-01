@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, Flask
 from flask_login import login_required, current_user
 from . import db
 from .models import User
+from .other import removeTags
 import requests
 import datetime
 
@@ -37,8 +38,14 @@ def list_assignments(course_id):
 @pages.route('/courses/<course_id>/announcements')
 @login_required
 def list_announcements(course_id):
-	url = f'https://{current_user.domain}/api/v1/courses/{course_id}/announcements'
-	return 'announcements'
+	url = f'https://{current_user.domain}/api/v1/announcements/'
+	params = {'access_token':current_user.api_token,'context_codes[]':f'course_{str(course_id)}','per_page':'100'}
+	r = requests.get(url,params=params)
+	data = r.json()
+	for item in data:
+		if item['posted_at']:
+			item['posted_at'] = datetime.datetime.strptime(item['posted_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
+	return render_template('announcements.html', user=current_user, data=data, course_id=course_id)
 
 @pages.route('/courses/<course_id>/assignments/<assignment_id>')
 @login_required
@@ -51,10 +58,29 @@ def assignment_details(course_id,assignment_id):
 		due_date = datetime.datetime.strptime(data['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
 	else:
 		due_date = None
-	from .other import removeTags
 	if data['description']:
 		data['description'] = removeTags(data['description'])
 	return render_template('assignment_details.html', user=current_user, data=data, course_id=course_id, due_date=due_date)
+
+@pages.route('/courses/<course_id>/announcements/<announcement_id>')
+@login_required
+def announcement_details(course_id, announcement_id):
+	url = f'https://{current_user.domain}/api/v1/announcements/'
+	params = {'access_token':current_user.api_token,'context_codes[]':f'course_{str(course_id)}','per_page':'100'}
+	r = requests.get(url,params=params)
+	for item in r.json():
+		if item['id'] == int(announcement_id):
+			data = item
+			if data['message']:
+				data['message'] = removeTags(data['message'])
+			if data['posted_at']:
+				data['posted_at'] = datetime.datetime.strptime(data['posted_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
+			return render_template('announcement_details.html', user=current_user, data=data, course_id=course_id)
+
+@pages.route('/todo')
+@login_required
+def todo():
+	return 'Coming soon...'
 
 @pages.route('<stuff>')
 def path(stuff):

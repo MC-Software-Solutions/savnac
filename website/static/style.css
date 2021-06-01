@@ -98,6 +98,16 @@ body p{
 .box button[type = "submit"]:hover{
   background: #2ecc71;
 }
+.get-started{
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 20px;
+  border: 2px solid #2ecc71;
+  background: #2ecc71;
+  text-decoration: none;
+  color: white;
+}
 .card{
   min-width: 300px;
   min-height: 140px;
