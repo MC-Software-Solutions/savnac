@@ -18,11 +18,11 @@ body p{
   width: 100%;
 }
 .navbar-brand{
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .navbar-nav{
   margin-left: auto;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .home h1{
   text-align: center;
