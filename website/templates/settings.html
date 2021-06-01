@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}{{data['name']}}{% endblock %}
 {% block content %}
+<!--Below is the code that routes user information from our database to be displayed-->
 <div class="container">
-    <h1 style=>Settings</h1>
+    <h1>Settings</h1>
+    <p>{{user.username}}</p>
+    <p>{{user.password}}</p>
+    <p>{{user.api_token}}</p>
+    <p>{{user.domain}}</p>
 </div>
 {% endblock %}

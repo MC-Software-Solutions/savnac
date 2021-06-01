@@ -114,3 +114,8 @@ def feedback():
 			print(first_name, last_name, email, feedback)
 			return redirect(url_for('pages.feedback'))
 	return render_template('feedback.html', user=current_user)
+
+@pages.route('/settings')
+@login_required
+def settings():
+	return render_template("settings.html", user=current_user)
