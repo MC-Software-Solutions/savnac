@@ -102,15 +102,15 @@ def feedback():
 		email = request.form.get('email')
 		feedback = request.form.get('feedback')
 		if len(first_name) == 0:
-			flash('First name cannot be empty.', category='error')
+			flash('First name cannot be empty.', category='feedback-error')
 		elif len(last_name) == 0:
-			flash('Last name cannot be empty.', category='error')
+			flash('Last name cannot be empty.', category='feedback-error')
 		elif len(email) == 0:
-			flash('Email cannot be empty.', category='error')
+			flash('Email cannot be empty.', category='feedback-error')
 		elif len(feedback) == 0:
-			flash('Feedback cannot be empty.', category='error')
+			flash('Feedback cannot be empty.', category='feedback-error')
 		else:
-			flash('Your feedback has been submitted!', category='success')
+			flash('Your feedback has been submitted!', category='feedback-success')
 			print(first_name, last_name, email, feedback)
 			return redirect(url_for('pages.feedback'))
 	return render_template('feedback.html', user=current_user)
