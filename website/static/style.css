@@ -78,7 +78,7 @@ body p{
   transition: 0.25s;
   cursor: pointer;
 }
-.box input[type = "submit"]:hover{
+.box button[type = "submit"]:hover{
   background: #2ecc71;
 }
 .card{
