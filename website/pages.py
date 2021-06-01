@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, Flask, session, flash, redirect, url_for
 from flask_login import login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from .models import User
 from .other import removeTags
@@ -102,20 +103,15 @@ def feedback():
 		email = request.form.get('email')
 		feedback = request.form.get('feedback')
 		if len(first_name) == 0:
-			flash('First name cannot be empty.', category='error')
+			flash('First name cannot be empty.', category='feedback-error')
 		elif len(last_name) == 0:
-			flash('Last name cannot be empty.', category='error')
+			flash('Last name cannot be empty.', category='feedback-error')
 		elif len(email) == 0:
-			flash('Email cannot be empty.', category='error')
+			flash('Email cannot be empty.', category='feedback-error')
 		elif len(feedback) == 0:
-			flash('Feedback cannot be empty.', category='error')
+			flash('Feedback cannot be empty.', category='feedback-error')
 		else:
-			flash('Your feedback has been submitted!', category='success')
+			flash('Your feedback has been submitted!', category='feedback-success')
 			print(first_name, last_name, email, feedback)
 			return redirect(url_for('pages.feedback'))
 	return render_template('feedback.html', user=current_user)
-
-@pages.route('/settings')
-@login_required
-def settings():
-	return render_template("settings.html", user=current_user)
