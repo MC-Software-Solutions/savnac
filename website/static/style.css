@@ -10,6 +10,9 @@ body{
 body p{
   color: #171a1d;
 }
+.navbar{
+  width: 100%;
+}
 .navbar-brand{
   margin-left: 10px;
 }
@@ -82,7 +85,7 @@ body p{
   background: #2ecc71;
 }
 .card{
-  width: 420px;
+  min-width: 300px;
   min-height: 140px;
   margin-top: 20px;
   margin-bottom: 20px;

@@ -31,5 +31,5 @@ Coming soon...
 ||Add help page explaining how to get api token|
 ||Click courses to view assignments and announcements|
 ||Change user settings (password, api token, organization domain)|
-||Make website mobile friendly|
+|:heavy_check_mark:|Make website mobile friendly|
 

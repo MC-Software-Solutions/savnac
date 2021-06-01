@@ -3,8 +3,8 @@
 {% block content %}
 <section id='assignment-details'>
 	<div class='container'>
-		<div class='row'>
-			<div class='card' style='margin: 0 auto; margin-top: 20px; float: none; width: 1500px; height: auto; background: white;' onmouseover='this.style.background="white"' onmouseout='this.style.background="white"'>
+		<div class='row' style='padding-left: 20px; padding-right: 20px;'>
+			<div class='card' style='margin-top: 20px; width: 1500px; height: auto; background: white;' onmouseover='this.style.background="white"' onmouseout='this.style.background="white"'>
 				<div style='text-align: left; color: #171a1d;'>
 					<h2><a href='https://{{current_user.domain}}/courses/{{course_id}}/assignments/{{data["id"]}}' target='_blank' style='color: #171a1d;'>{{data['name']}}<a></h2>
 					<h5><b>Due: </b>{{due_date}}</h6>
