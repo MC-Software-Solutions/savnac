@@ -9,6 +9,7 @@ body{
 }
 body p{
   color: #171a1d;
+  margin-top: 20px;
 }
 .navbar{
   width: 100%;

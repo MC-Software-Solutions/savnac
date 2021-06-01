@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from os import environ
 
 db = SQLAlchemy()
@@ -29,5 +29,9 @@ def create_app():
 	@login_manager.user_loader
 	def load_user(id):
 		return User.query.get(int(id))
-		
+	
+	@app.errorhandler(404)
+	def notfound(e):
+		return render_template('not_found.html', user=current_user)
+
 	return app

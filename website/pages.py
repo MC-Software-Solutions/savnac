@@ -17,8 +17,10 @@ def home():
 def list_courses():
 	if request.args.get('assignments'):
 		dest = 'assignments'
-	if request.args.get('announcements'):
+	elif request.args.get('announcements'):
 		dest = 'announcements'
+	else:
+		dest = 'assignments'
 	url = f'https://{current_user.domain}/api/v1/courses/'
 	params = {'access_token':current_user.api_token.strip(),'enrollment_state':'active','exclude_blueprint_courses':'true','per_page':'100'}
 	r = requests.get(url,params=params)
@@ -80,13 +82,11 @@ def announcement_details(course_id, announcement_id):
 @pages.route('/todo')
 @login_required
 def todo():
-	return 'Coming soon...'
-
-@pages.route('<stuff>')
-def path(stuff):
-	return render_template('not_found.html', user=current_user)
-
-def register_404_pages(app):
-	@app.errorhandler(404)
-	def notfound():
-		return render_template('not_found.html', user=current_user)
+	url = f'https://{current_user.domain}/api/v1/users/self/missing_submissions/'
+	params = {'access_token':current_user.api_token}
+	r = requests.get(url,params=params)
+	data = r.json()
+	for item in data:
+		if item['due_at']:
+			item['due_at'] = datetime.datetime.strptime(item['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
+	return render_template('todo.html', user=current_user, data=data)
