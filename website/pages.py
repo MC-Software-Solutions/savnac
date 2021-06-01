@@ -118,4 +118,5 @@ def feedback():
 @pages.route('/settings')
 @login_required
 def settings():
+	session.pop('_flashes', None)
 	return render_template("settings.html", user=current_user)
