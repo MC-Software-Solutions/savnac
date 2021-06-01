@@ -28,8 +28,8 @@ Coming soon...
 |:heavy_check_mark:|Handle login, logout, and sign up of users|
 |:heavy_check_mark:|Add course pages (only viewable if authenticated)|
 |:heavy_check_mark:|Add canvas courses to course page|
+|:heavy_check_mark:|Add todo list of upcoming, unsubmitted assignments|
 ||Add help page explaining how to get api token|
-||Click courses to view assignments and announcements|
+|:heavy_check_mark:|Click courses to view assignments and announcements|
 ||Change user settings (password, api token, organization domain)|
 |:heavy_check_mark:|Make website mobile friendly|
-
