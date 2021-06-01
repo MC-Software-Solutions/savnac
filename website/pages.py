@@ -5,12 +5,14 @@ from .models import User
 from .other import removeTags
 import requests
 import datetime
+import random
 
 pages = Blueprint('pages',__name__)
 
 @pages.route('/')
 def home():
-	return render_template('home.html', user=current_user)
+	image = f'study_{random.randint(0,4)}.png'
+	return render_template('home.html', user=current_user, image=image)
 
 @pages.route('/courses')
 @login_required
