@@ -22,7 +22,7 @@ body p{
 }
 .home h1{
   text-align: center;
-  font-size: 120px;
+  font-size: 100px;
   margin-top: 50px;
   text-transform: uppercase;
 }
@@ -30,11 +30,20 @@ body p{
   text-align: center;
   font-size: 40px;
 }
+@media only screen and (max-width: 450px){
+  .home h1{
+    font-size: 80px;
+  }
+  .home p{
+    font-size: 32px;
+  }
+}
 .box{
   border-radius: 20px;
   width: 320px;
   padding: 40px;
   display: block;
+  margin-top: auto;
   margin-left: auto;
   margin-right: auto;
   position: absolute;
@@ -43,6 +52,11 @@ body p{
   transform: translate(-50%,-50%);
   background: #212529;
   text-align: center;
+}
+@media only screen and (max-height: 800px){
+  .box{
+    margin-top: 90px;
+  }
 }
 .box h1{
   color: white;

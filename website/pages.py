@@ -42,7 +42,8 @@ def assignment_details(course_id,assignment_id):
 	else:
 		due_date = None
 	from .other import removeTags
-	data['description'] = removeTags(data['description'])
+	if data['description']:
+		data['description'] = removeTags(data['description'])
 	return render_template('assignment_details.html', user=current_user, data=data, course_id=course_id, due_date=due_date)
 
 @pages.route('<stuff>')
