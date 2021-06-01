@@ -31,12 +31,21 @@ body p{
   text-align: center;
   font-size: 40px;
 }
+.home img{
+  margin-left: auto; 
+  margin-right: auto; 
+  display: block; 
+  width: 600px;
+}
 @media only screen and (max-width: 450px){
   .home h1{
     font-size: 80px;
   }
   .home p{
     font-size: 32px;
+  }
+  .home img{
+    width: 300px;
   }
 }
 .box{
