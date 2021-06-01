@@ -14,13 +14,17 @@ def home():
 @pages.route('/courses')
 @login_required
 def list_courses():
+	if request.args.get('assignments'):
+		dest = 'assignments'
+	if request.args.get('announcements'):
+		dest = 'announcements'
 	url = f'https://{current_user.domain}/api/v1/courses/'
 	params = {'access_token':current_user.api_token.strip(),'enrollment_state':'active','exclude_blueprint_courses':'true','per_page':'100'}
 	r = requests.get(url,params=params)
 	data = [(item['id'], item['name']) for item in r.json()]
-	return render_template('courses.html', user=current_user, data=data)
+	return render_template('courses.html', user=current_user, data=data, dest=dest)
 
-@pages.route('/courses/<course_id>')
+@pages.route('/courses/<course_id>/assignments')
 @login_required
 def list_assignments(course_id):
 	url = f'https://{current_user.domain}/api/v1/courses/{course_id}/assignments/'
@@ -29,6 +33,12 @@ def list_assignments(course_id):
 	data = [(item['id'], item['name'], datetime.datetime.strptime(item['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p') if item['due_at'] else None, item['points_possible'], item['submission']['workflow_state'].title()) for item in r.json()]
 	data.reverse()
 	return render_template('assignments.html', user=current_user, data=data, course_id=course_id)
+
+@pages.route('/courses/<course_id>/announcements')
+@login_required
+def list_announcements(course_id):
+	url = f'https://{current_user.domain}/api/v1/courses/{course_id}/announcements'
+	return 'announcements'
 
 @pages.route('/courses/<course_id>/assignments/<assignment_id>')
 @login_required
