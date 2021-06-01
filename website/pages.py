@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, Flask
+from flask import Blueprint, render_template, request, Flask, session, flash, redirect, url_for
 from flask_login import login_required, current_user
 from . import db
 from .models import User
@@ -93,6 +93,24 @@ def todo():
 			item['due_at'] = datetime.datetime.strptime(item['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
 	return render_template('todo.html', user=current_user, data=data)
 
-@pages.route('/feedback')
+@pages.route('/feedback', methods=['GET','POST'])
 def feedback():
+	#session.pop('_flashes', None)
+	if request.method == 'POST':
+		first_name = request.form.get('fname')
+		last_name = request.form.get('lname')
+		email = request.form.get('email')
+		feedback = request.form.get('feedback')
+		if len(first_name) == 0:
+			flash('First name cannot be empty.', category='error')
+		elif len(last_name) == 0:
+			flash('Last name cannot be empty.', category='error')
+		elif len(email) == 0:
+			flash('Email cannot be empty.', category='error')
+		elif len(feedback) == 0:
+			flash('Feedback cannot be empty.', category='error')
+		else:
+			flash('Your feedback has been submitted!', category='success')
+			print(first_name, last_name, email, feedback)
+			return redirect(url_for('pages.feedback'))
 	return render_template('feedback.html', user=current_user)
