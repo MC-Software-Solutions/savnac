@@ -7,6 +7,7 @@ Source code for [savnac.xyz](http://www.savnac.xyz)
 ```
 git clone https://github.com/MC-Software-Solutions/savnac.git
 cd savnac
+git checkout web-app
 pip3 install -r requirements.txt
 ```
 
