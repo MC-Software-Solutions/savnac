@@ -7,6 +7,9 @@ from .other import removeTags
 import requests
 import datetime
 import random
+import smtplib, ssl
+from validate_email import validate_email
+from os import environ
 
 pages = Blueprint('pages',__name__)
 
@@ -108,9 +111,23 @@ def feedback():
 			flash('Last name cannot be empty.', category='feedback-error')
 		elif len(email) == 0:
 			flash('Email cannot be empty.', category='feedback-error')
+		elif not validate_email(email_address=email, check_format=True, check_blacklist=True, check_dns=True, dns_timeout=10, check_smtp=True, smtp_timeout=10, smtp_helo_host='smtp.acik.tech', smtp_from_address='miles@acik.tech', smtp_debug=False):
+			flash('Email address is invalid.', category='feedback-error')
 		elif len(feedback) == 0:
 			flash('Feedback cannot be empty.', category='feedback-error')
 		else:
+			host = 'smtp.acik.tech'
+			port = 25
+			password = environ['ACIK_TECH_PASSWORD']
+			sender = 'miles@acik.tech'
+			receivers = ['miles@acik.tech','can@acik.tech']
+			message = f'From: {first_name} {last_name} <{email}>\nTo: Miles Rack <{receivers[0]}>, Can Altug <{receivers[1]}>\nSubject: Savnac Feedback\n{feedback}'
+			try:
+				with smtplib.SMTP(host, port) as server:
+					server.login('miles@acik.tech',password)
+					server.sendmail(sender, receivers, message)
+			except Exception as e:
+				print(e)
 			flash('Your feedback has been submitted!', category='feedback-success')
 			print(first_name, last_name, email, feedback)
 			return redirect(url_for('pages.feedback'))
