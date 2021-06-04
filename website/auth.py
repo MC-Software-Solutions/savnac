@@ -24,7 +24,7 @@ def login():
 				flash('Incorrect password.', category='error')
 		else:
 			flash('User does not exist.', category='error')	
-	return render_template('login.html', user=current_user)
+	return render_template('login.html', user=current_user, footer=False)
 
 @auth.route('/sign_up', methods=['GET','POST'])
 def sign_up():
@@ -67,7 +67,7 @@ def sign_up():
 			login_user(new_user, remember=True)
 			flash('Account created!', category='success')
 			return redirect(url_for('pages.todo'))
-	return render_template('sign_up.html', user=current_user)
+	return render_template('sign_up.html', user=current_user, footer=False)
 
 @auth.route('/settings', methods=['GET','POST'])
 @login_required
@@ -98,7 +98,7 @@ def settings():
 			db.session.commit()
 			flash('Your settings have been updated!', category='settings-success')
 			return redirect(url_for('auth.settings'))
-	return render_template('settings.html', user=current_user)
+	return render_template('settings.html', user=current_user, footer=True)
 
 @auth.route('/change_password', methods=['GET','POST'])
 @login_required

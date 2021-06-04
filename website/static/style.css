@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 
+html, body{
+  height: 100%;
+}
+
 body{
   font-family: 'Quantico', sans-serif;
   background: white;
@@ -67,21 +71,27 @@ body p, ol{
   background: #212529;
   text-align: center;
 }
+
 @media only screen and (max-height: 850px){
   .box{
-    margin-top: 60px;
+    margin-top: 20vh;
+  }
+  .page-wrapper{
+    margin-bottom: 20vh;
   }
 }
+/*
 @media only screen and (max-height: 800px){
   .box{
-    margin-top: 90px;
+    padding-top: 40vh;
   }
 }
 @media only screen and (max-height: 700px){
   .box{
-    margin-top: 120px;
+    padding-top: 40vh;
   }
 }
+*/
 .box h1{
   color: white;
   text-transform: uppercase;
@@ -155,4 +165,22 @@ button[type='submit']{
 .card:hover{
   background: #e6f4ff;
   transition: 1s;
+}
+
+.page-wrapper{
+  min-height: 100%;
+  padding-bottom: 50px;
+}
+
+.footer{
+  position: relative;
+  height: 40px;
+}
+
+.footer .footer-content{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
 }

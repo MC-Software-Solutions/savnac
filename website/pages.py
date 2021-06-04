@@ -16,7 +16,7 @@ pages = Blueprint('pages',__name__)
 @pages.route('/')
 def home():
 	image = f'study_{random.randint(0,4)}.png'
-	return render_template('home.html', user=current_user, image=image)
+	return render_template('home.html', user=current_user, image=image, footer=True)
 
 @pages.route('/courses')
 @login_required
@@ -31,7 +31,7 @@ def list_courses():
 	params = {'access_token':current_user.api_token.strip(),'enrollment_state':'active','exclude_blueprint_courses':'true','per_page':'100'}
 	r = requests.get(url,params=params)
 	data = [(item['id'], item['name']) for item in r.json()]
-	return render_template('courses.html', user=current_user, data=data, dest=dest)
+	return render_template('courses.html', user=current_user, data=data, dest=dest, footer=True)
 
 @pages.route('/courses/<course_id>/assignments')
 @login_required
@@ -41,7 +41,7 @@ def list_assignments(course_id):
 	r = requests.get(url,params=params)
 	data = [(item['id'], item['name'], datetime.datetime.strptime(item['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p') if item['due_at'] else None, item['points_possible'], item['submission']['workflow_state'].title()) for item in r.json()]
 	data.reverse()
-	return render_template('assignments.html', user=current_user, data=data, course_id=course_id)
+	return render_template('assignments.html', user=current_user, data=data, course_id=course_id, footer=True)
 
 @pages.route('/courses/<course_id>/announcements')
 @login_required
@@ -53,7 +53,7 @@ def list_announcements(course_id):
 	for item in data:
 		if item['posted_at']:
 			item['posted_at'] = datetime.datetime.strptime(item['posted_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
-	return render_template('announcements.html', user=current_user, data=data, course_id=course_id)
+	return render_template('announcements.html', user=current_user, data=data, course_id=course_id, footer=True)
 
 @pages.route('/courses/<course_id>/assignments/<assignment_id>')
 @login_required
@@ -68,7 +68,7 @@ def assignment_details(course_id,assignment_id):
 		due_date = None
 	if data['description']:
 		data['description'] = removeTags(data['description'])
-	return render_template('assignment_details.html', user=current_user, data=data, course_id=course_id, due_date=due_date)
+	return render_template('assignment_details.html', user=current_user, data=data, course_id=course_id, due_date=due_date, footer=True)
 
 @pages.route('/courses/<course_id>/announcements/<announcement_id>')
 @login_required
@@ -83,7 +83,7 @@ def announcement_details(course_id, announcement_id):
 				data['message'] = removeTags(data['message'])
 			if data['posted_at']:
 				data['posted_at'] = datetime.datetime.strptime(data['posted_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
-			return render_template('announcement_details.html', user=current_user, data=data, course_id=course_id)
+			return render_template('announcement_details.html', user=current_user, data=data, course_id=course_id, footer=True)
 
 @pages.route('/todo')
 @login_required
@@ -95,7 +95,7 @@ def todo():
 	for item in data:
 		if item['due_at']:
 			item['due_at'] = datetime.datetime.strptime(item['due_at'],'%Y-%m-%dT%H:%M:%Sz').strftime('%m/%d/%Y %I:%M %p')
-	return render_template('todo.html', user=current_user, data=data)
+	return render_template('todo.html', user=current_user, data=data, footer=True)
 
 @pages.route('/feedback', methods=['GET','POST'])
 def feedback():
@@ -131,8 +131,8 @@ def feedback():
 			flash('Your feedback has been submitted!', category='feedback-success')
 			print(first_name, last_name, email, feedback)
 			return redirect(url_for('pages.feedback'))
-	return render_template('feedback.html', user=current_user)
+	return render_template('feedback.html', user=current_user, footer=True)
 
 @pages.route('/help')
 def help():
-	return render_template('help.html', user=current_user)
+	return render_template('help.html', user=current_user, footer=True)
